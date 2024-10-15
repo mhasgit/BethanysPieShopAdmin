@@ -6,6 +6,6 @@ namespace BethanysPieShopAdmin.ViewModels
     public class PieAddViewModel
     {
         public IEnumerable<SelectListItem>? Categories { get; set; } = default!;
-        public Pie Pie { get; set; }
+        public Pie? Pie { get; set; }
     }
 }

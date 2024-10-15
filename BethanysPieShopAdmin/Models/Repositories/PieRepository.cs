@@ -12,6 +12,12 @@ namespace BethanysPieShopAdmin.Models.Repositories
             _bethanysPieShopDbContext = bethanysPieShopDbContext;
         }
 
+        public async Task<int> AddPieAsync(Pie pie)
+        {
+            _bethanysPieShopDbContext.Add(pie);
+            return await _bethanysPieShopDbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Pie>> GetAllPiesAsync()
         {
             return await _bethanysPieShopDbContext.Pies.OrderBy(c => c.PieId).ToListAsync();
