@@ -26,7 +26,7 @@ jobs:
 
       - name: Run migration
         env:
-          ConnectionStrings__BethanysPieShopDbContextConnection: ${{secrets.DB_CONNECTION_STRING}}
+          ConnectionStrings__BethanysPieShopAdminDbContextConnection: ${{secrets.DB_CONNECTION_STRING}}
         run: |
           dotnet tool install --global dotnet-ef
           dotnet ef database update  --project .\BethanysPieShop\BethanysPieShop.csproj
