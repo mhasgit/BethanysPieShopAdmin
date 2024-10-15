@@ -14,7 +14,7 @@ namespace BethanysPieShopAdmin
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<BethanysPieShopDbContext>(options =>
-              options.UseSqlServer(builder.Configuration.GetConnectionString("BethanysPieShopDbContextConnection")));
+              options.UseSqlServer(builder.Configuration.GetConnectionString("BethanysPieShopAdminDbContextConnection")));
 
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IPieRepository, PieRepository>();
