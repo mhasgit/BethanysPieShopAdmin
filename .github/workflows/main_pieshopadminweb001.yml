@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - pieshopadminweb001
 
 on:
@@ -26,6 +23,13 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{runner.temp}}/myapp
+
+      - name: Run migration
+        env:
+          ConnectionStrings__BethanysPieShopDbContextConnection: ${{secrets.DB_CONNECTION_STRING}}
+        run: |
+          dotnet tool install --global dotnet-ef
+          dotnet ef database update  --project .\BethanysPieShop\BethanysPieShop.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -53,4 +57,4 @@ jobs:
           app-name: 'pieshopadminweb001'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_479E2A698A2F463596F57D975760F14E }}
+          publish-profile: ${{ secrets.APP_PUBLISH_PROFILE }}
